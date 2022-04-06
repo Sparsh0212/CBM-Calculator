@@ -31,7 +31,6 @@ function App() {
   const [weightLB, setWeightLB] = useState(0);
 
 
-
   const handleSelectionMeasurement = (e) => {
     reset();
     console.log(e.target.value);
@@ -200,11 +199,9 @@ function App() {
         <label><h2>CBM Calculator</h2></label>
 
 
-
-
         <div style={borderStyle} >
-          <label style = {labelStyle} >Unit of measurement</label>
-          <select style={styling} value={OptionValue} onChange={e => { handleSelectionMeasurement(e); calculate() }} >
+          <label style={labelStyle} >Unit of measurement</label>
+          <select value={OptionValue} onChange={e => { handleSelectionMeasurement(e); calculate() }} >
             <option value="" disabled>Select value</option>
             <option value="centi">cm</option>
             <option value="mili">mm</option>
@@ -215,56 +212,56 @@ function App() {
           </select>
 
           <br />
-          <label style = {labelStyle}>Length </label>
+          <label style={labelStyle}>Length </label>
           <input type="number" style={styling} value={length} onChange={e => setLength(+e.target.value)} onKeyUp={() => calculate()} />
           <br />
-          <label style = {labelStyle}>Width </label>
+          <label style={labelStyle}>Width </label>
           <input type="number" style={styling} value={width} onChange={e => setWidth(+e.target.value)} onKeyUp={() => calculate()} />
           <br />
-          <label style = {labelStyle}>Height </label>
+          <label style={labelStyle}>Height </label>
           <input type="number" style={styling} value={height} onChange={e => setHeight(+e.target.value)} onKeyUp={() => calculate()} />
           <br />
-          <label style = {labelStyle}>Gross Weight (kg)</label>
+          <label style={labelStyle}>Gross Weight (kg)</label>
           <input type="number" style={styling} value={grossWeightValue} onChange={e => setGrossWeightValue(+e.target.value)} onKeyUp={() => calculate()} />
           <br />
 
 
-          <label style = {labelStyle}>Quantity</label>
+          <label style={labelStyle}>Quantity</label>
           <input type="number" style={styling} value={quantity} onChange={e => setQuantity(+e.target.value)} onKeyUp={() => calculate()} />
           <br />
 
-          <label style = {labelStyle}> Weight (kg) </label>
+          <label style={labelStyle}> Weight (kg) </label>
           <input type="number" style={readInputStyle} value={weightKG} readOnly={true} />
           <br />
 
-          <label style = {labelStyle}> Weight (lb) </label>
+          <label style={labelStyle}> Weight (lb) </label>
           <input type="number" style={readInputStyle} value={weightLB} readOnly={true} />
           <br />
 
 
-          <label style = {labelStyle}> Volume (Cubic Meter) </label>
+          <label style={labelStyle}> Volume (Cubic Meter) </label>
           <input type="number" style={readInputStyle} value={cubicVolume} readOnly={true} />
           <br />
 
-          <label style = {labelStyle}> Volume (Cubic Feet) </label>
+          <label style={labelStyle}> Volume (Cubic Feet) </label>
           <input type="number" style={readInputStyle} value={cubicFeet} readOnly={true} />
           <br />
 
-          <label style = {labelStyle}> Volume Weight Air (kg) </label>
+          <label style={labelStyle}> Volume Weight Air (kg) </label>
           <input type="number" style={readInputStyle} value={volumeWeightAirKG} readOnly={true} />
           <br>
           </br>
-          <label style = {labelStyle}> Volume Weight Air (lb) </label>
+          <label style={labelStyle}> Volume Weight Air (lb) </label>
           <input type="number" style={readInputStyle} value={volumeWeightAirLB} readOnly={true} />
           <br />
 
-          <label style = {labelStyle}> Volume Weight Sea (kg) </label>
+          <label style={labelStyle}> Volume Weight Sea (kg) </label>
           <input type="number" style={readInputStyle} value={volumeWeightSeaKG} readOnly={true} />
           <br />
-          <label style = {labelStyle}> Volume Weight Sea (lb) </label>
+          <label style={labelStyle}> Volume Weight Sea (lb) </label>
           <input type="number" style={readInputStyle} value={volumeWeightSeaLB} readOnly={true} />
           <br />
-          <p style = {labelStyle}>Note - Fields with white background color are input fields(Editable) and fields with grey background color are output fields (non-Editable)</p>
+          <p style={labelStyle}>Note - Fields with white background color are input fields(Editable) and fields with grey background color are output fields (non-Editable)</p>
         </div>
       </div>
     </div>
