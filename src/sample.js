@@ -10,7 +10,7 @@ function sample() {
     const selectUnit = () => {
         if(selectType === "cubicM")
         {
-            a = [
+            const b = [
                 {
                     label: "cm",
                     value: "cm"
@@ -24,10 +24,11 @@ function sample() {
                     value: "meter"
                 }
             ]
+            a.push(b);
 
         }
         if(selectType === "cubicF"){
-            a = [
+            const b = [
                 {
                     label: "feet",
                     value: "feet"
@@ -41,6 +42,8 @@ function sample() {
                     value: "inches"
                 }
             ]
+            a.push(b);
+            
         }
 
     }
