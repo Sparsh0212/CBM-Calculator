@@ -78,7 +78,6 @@ function App() {
     marginLeft: '500px',
     marginRight: '500px',
     marginBottom: '50px',
-    resize: 'horizontal',
     backgroundColor: 'white'
   }
 
@@ -191,18 +190,32 @@ function App() {
   }
 
 
-
+  const measurementOptions = [
+    {
+      value : "centi",
+      label : "cm"
+    },
+    {
+      value : "mili",
+      label : "mm"
+    },
+    {
+      value : "meter",
+      label : "meter"
+    }
+  ];
 
   return (
     <div className="App">
       <div style={headerStyle}>
-        <label><h2>CBM Calculator</h2></label>
+        <h2>CBM Calculator</h2>
 
 
         <div style={borderStyle} >
           <label style={labelStyle} >Unit of measurement  </label>
           <select value={OptionValue} onChange={e => { handleSelectionMeasurement(e); calculate() }} >
             <option value="" disabled>Select value</option>
+          
             <option value="centi">cm</option>
             <option value="mili">mm</option>
             <option value="meter">meter</option>
@@ -213,21 +226,21 @@ function App() {
 
           <br />
           <label style={labelStyle}>Length </label>
-          <input type="number" style={styling} value={length} onChange={e => setLength(+e.target.value)} onKeyUp={() => calculate()} />
+          <input type="number" style={styling} value={length} onChange={e => {setLength(+e.target.value); calculate()}} onKeyUp={() => calculate()} />
           <br />
           <label style={labelStyle}>Width </label>
-          <input type="number" style={styling} value={width} onChange={e => setWidth(+e.target.value)} onKeyUp={() => calculate()} />
+          <input type="number" style={styling} value={width} onChange={e => {setWidth(+e.target.value); calculate()}} onKeyUp={() => calculate()} />
           <br />
           <label style={labelStyle}>Height </label>
-          <input type="number" style={styling} value={height} onChange={e => setHeight(+e.target.value)} onKeyUp={() => calculate()} />
+          <input type="number" style={styling} value={height} onChange={e => {setHeight(+e.target.value); calculate()}} onKeyUp={() => calculate()} />
           <br />
           <label style={labelStyle}>Gross Weight (kg)</label>
-          <input type="number" style={styling} value={grossWeightValue} onChange={e => setGrossWeightValue(+e.target.value)} onKeyUp={() => calculate()} />
+          <input type="number" style={styling} value={grossWeightValue} onChange={e => {setGrossWeightValue(+e.target.value); calculate()}} onKeyUp={() => calculate()} />
           <br />
 
 
           <label style={labelStyle}>Quantity</label>
-          <input type="number" style={styling} value={quantity} onChange={e => setQuantity(+e.target.value)} onKeyUp={() => calculate()} />
+          <input type="number" style={styling} value={quantity} onChange={e => {setQuantity(+e.target.value); calculate()}} onKeyUp={() => calculate()} />
           <br />
 
           <label style={labelStyle}> Weight (kg) </label>

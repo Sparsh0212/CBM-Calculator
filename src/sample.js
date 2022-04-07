@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 function sample() {
 
-    const a = [];
+    let a = [];
     const [selectType, setSelectType] = useState("");
 
 
@@ -24,7 +24,8 @@ function sample() {
                     value: "meter"
                 }
             ]
-            a.push(b);
+           
+            a.concat(b);
 
         }
         if(selectType === "cubicF"){
