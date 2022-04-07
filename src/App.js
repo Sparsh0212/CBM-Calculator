@@ -29,13 +29,13 @@ function App() {
   const [grossWeightValue, setGrossWeightValue] = useState(0);
   const [weightKG, setWeightKG] = useState(0);
   const [weightLB, setWeightLB] = useState(0);
-  
+
   const handleSelectionMeasurement = (e) => {
     reset();
     console.log(e.target.value);
     var a = e.target.value;
     setOptionValue(a);
-   
+
 
 
   }
@@ -60,7 +60,6 @@ function App() {
     boxSize: 'border-box',
     align: 'center',
     textAlign: 'center',
-    resize: 'horizontal',
     backgroundColor: 'white'
   }
 
@@ -79,6 +78,7 @@ function App() {
     marginLeft: '500px',
     marginRight: '500px',
     marginBottom: '50px',
+    resize: 'horizontal',
     backgroundColor: 'white'
   }
 
@@ -200,7 +200,7 @@ function App() {
 
 
         <div style={borderStyle} >
-          <label style={labelStyle} >Unit of measurement </label>
+          <label style={labelStyle} >Unit of measurement  </label>
           <select value={OptionValue} onChange={e => { handleSelectionMeasurement(e); calculate() }} >
             <option value="" disabled>Select value</option>
             <option value="centi">cm</option>
