@@ -19,22 +19,31 @@ function App() {
   const [height, setHeight] = useState(0);
   const [cubicVolume, setCubicVolume] = useState(length * width * height);
   const [OptionValue, setOptionValue] = useState("");
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
   const [cubicFeet, setCubicFeet] = useState(0);
   const [volumeWeightAirKG, setVolumeWeightAirKG] = useState(0);
   const [volumeWeightAirLB, setVolumeWeightAirLB] = useState(0);
   const [volumeWeightSeaKG, setVolumeWeightSeaKG] = useState(0);
   const [volumeWeightSeaLB, setVolumeWeightSeaLB] = useState(0);
-  // const [radio, setRadio] = useState("");
   const [grossWeightValue, setGrossWeightValue] = useState(0);
   const [weightKG, setWeightKG] = useState(0);
   const [weightLB, setWeightLB] = useState(0);
+  const [weightType, setWeightType] = useState("");
 
   const handleSelectionMeasurement = (e) => {
     reset();
     console.log(e.target.value);
     var a = e.target.value;
-    setOptionValue(a);
+    setOptionValue(a);      //have to reset the quantity in order to calculate the weight
+
+
+  }
+
+  const handleSelectionWeight = (e) => {
+    setQuantity(0);
+    console.log(e.target.value);
+    var a = e.target.value;
+    setWeightType(a);
 
 
 
@@ -45,7 +54,7 @@ function App() {
     setLength(0);
     setWidth(0);
     setCubicVolume(0);
-    setQuantity(1);
+    setQuantity(0);
     setOptionValue("");
     setWeightKG(0);
     setWeightLB(0);
@@ -63,30 +72,30 @@ function App() {
     backgroundColor: 'white'
   }
 
-  const headerStyle = {
-    backgroundColor: '#92a8d1'
-  }
+
 
   const labelStyle = {
-    fontWeight: 'bolder'
+    fontWeight: 'normal',
+    color: 'grey',
+    fontFamily: "Times New Roman",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    textAlign: 'right',
+    width: '400px',
+    lineHeight: '26px',
+    marginBottom: '10px'
   }
 
-  const borderStyle = {
-    border: '5px solid black',
-    align: 'center',
-    marginTop: '30px',
-    marginLeft: '500px',
-    marginRight: '500px',
-    marginBottom: '50px',
-    backgroundColor: 'white'
-  }
 
   const readInputStyle = {
-    backgroundColor: 'grey',
+    border: 'none',
     width: '20%',
-    height: '10%',
     padding: '12px',
     margin: '8px',
+    height: '20px',
+    flex: '0 0 200px',
+    marginLeft: '10px'
 
   }
 
@@ -102,8 +111,16 @@ function App() {
       setVolumeWeightAirKG((quantity * vol * convertCentimeter) / 6000);
       setVolumeWeightAirLB(((quantity * vol * convertCentimeter) / 6000) * 2.205);
       setVolumeWeightSeaKG((quantity * vol * convertCentimeter) / 1000);
-      setWeightKG(quantity * grossWeightValue);
-      setWeightLB(quantity * grossWeightValue * 2.205);
+      if (weightType === "kg") {
+        setWeightKG(quantity * grossWeightValue);
+        setWeightLB(quantity * grossWeightValue * 2.205);
+
+      }
+      if (weightType === "lb") {
+        setWeightKG(quantity * grossWeightValue * 0.453);
+        setWeightLB(quantity * grossWeightValue);
+
+      }
 
     }
     if (OptionValue === "centi") {
@@ -117,11 +134,20 @@ function App() {
       setVolumeWeightAirLB(((quantity * vol) / 6000) * 2.205);
       setVolumeWeightSeaKG((quantity * vol) / 1000);
       setVolumeWeightSeaLB(((quantity * vol) / 1000) * 2.205);
-      setWeightKG(quantity * grossWeightValue);
-      setWeightLB(quantity * grossWeightValue * 2.205);
+      if (weightType === "kg") {
+        setWeightKG(quantity * grossWeightValue);
+        setWeightLB(quantity * grossWeightValue * 2.205);
 
+      }
+      if (weightType === "lb") {
+        setWeightKG(quantity * grossWeightValue * 0.453);
+        setWeightLB(quantity * grossWeightValue);
+
+      }
     }
     if (OptionValue === "meter") {
+      console.log("Option Value selected is " + OptionValue);
+
       let vol = length * width * height;
       let convertCentimeter = 100 * 100 * 100;
       let convertFeet = 3.281 * 3.281 * 3.281;
@@ -132,8 +158,18 @@ function App() {
       setVolumeWeightAirLB(((quantity * vol * convertCentimeter) / 6000) * 2.205);
       setVolumeWeightSeaKG((quantity * vol * convertCentimeter) / 1000);
       setVolumeWeightSeaLB(((quantity * vol * convertCentimeter) / 1000) * 2.205);
-      setWeightKG(quantity * grossWeightValue);
-      setWeightLB(quantity * grossWeightValue * 2.205);
+      if (weightType === "kg") {
+        setWeightKG(quantity * grossWeightValue);
+        setWeightLB(quantity * grossWeightValue * 2.205);
+
+      }
+      if (weightType === "lb") {
+        setWeightKG(quantity * grossWeightValue * 0.453);
+        setWeightLB(quantity * grossWeightValue);
+
+      }
+
+
 
 
     }
@@ -149,8 +185,17 @@ function App() {
       setVolumeWeightAirLB(((quantity * vol * convertCentimeter) / 6000) * 2.205);
       setVolumeWeightSeaKG((quantity * vol * convertCentimeter) / 1000);
       setVolumeWeightSeaLB(((quantity * vol * convertCentimeter) / 1000) * 2.205);
-      setWeightKG(quantity * grossWeightValue);
-      setWeightLB(quantity * grossWeightValue * 2.205);
+
+      if (weightType === "kg") {
+        setWeightKG(quantity * grossWeightValue);
+        setWeightLB(quantity * grossWeightValue * 2.205);
+
+      }
+      if (weightType === "lb") {
+        setWeightKG(quantity * grossWeightValue * 0.453);
+        setWeightLB(quantity * grossWeightValue);
+
+      }
 
 
     }
@@ -165,8 +210,17 @@ function App() {
       setVolumeWeightAirLB(((quantity * vol * convertCentimeter) / 6000) * 2.205);
       setVolumeWeightSeaKG((quantity * vol * convertCentimeter) / 1000);
       setVolumeWeightSeaLB(((quantity * vol * convertCentimeter) / 1000) * 2.205);
-      setWeightKG(quantity * grossWeightValue);
-      setWeightLB(quantity * grossWeightValue * 2.205);
+
+      if (weightType === "kg") {
+        setWeightKG(quantity * grossWeightValue);
+        setWeightLB(quantity * grossWeightValue * 2.205);
+
+      }
+      if (weightType === "lb") {
+        setWeightKG(quantity * grossWeightValue * 0.453);
+        setWeightLB(quantity * grossWeightValue);
+
+      }
 
 
     }
@@ -182,40 +236,35 @@ function App() {
       setVolumeWeightAirLB(((quantity * vol * convertCentimeter) / 6000) * 2.205);
       setVolumeWeightSeaKG((quantity * vol * convertCentimeter) / 1000);
       setVolumeWeightSeaLB(((quantity * vol * convertCentimeter) / 1000) * 2.205);
-      setWeightKG(quantity * grossWeightValue);
-      setWeightLB(quantity * grossWeightValue * 2.205);
+      if (weightType === "kg") {
+        setWeightKG(quantity * grossWeightValue);
+        setWeightLB(quantity * grossWeightValue * 2.205);
+
+      }
+      if (weightType === "lb") {
+        setWeightKG(quantity * grossWeightValue * 0.453);
+        setWeightLB(quantity * grossWeightValue);
+
+      }
 
     }
 
   }
 
 
-  const measurementOptions = [
-    {
-      value : "centi",
-      label : "cm"
-    },
-    {
-      value : "mili",
-      label : "mm"
-    },
-    {
-      value : "meter",
-      label : "meter"
-    }
-  ];
 
   return (
     <div className="App">
-      <div style={headerStyle}>
-        <h2>CBM Calculator</h2>
+
+      <h2>CBM Calculator</h2>
 
 
-        <div style={borderStyle} >
-          <label style={labelStyle} >Unit of measurement  </label>
+      <div className="row">
+        <div className="column">
+          <label  >Unit of measurement </label>
           <select value={OptionValue} onChange={e => { handleSelectionMeasurement(e); calculate() }} >
             <option value="" disabled>Select value</option>
-          
+
             <option value="centi">cm</option>
             <option value="mili">mm</option>
             <option value="meter">meter</option>
@@ -224,59 +273,86 @@ function App() {
             <option value="yard">yard</option>
           </select>
 
-          <br />
-          <label style={labelStyle}>Length </label>
-          <input type="number" style={styling} value={length} onChange={e => {setLength(+e.target.value); calculate()}} onKeyUp={() => calculate()} />
-          <br />
-          <label style={labelStyle}>Width </label>
-          <input type="number" style={styling} value={width} onChange={e => {setWidth(+e.target.value); calculate()}} onKeyUp={() => calculate()} />
-          <br />
-          <label style={labelStyle}>Height </label>
-          <input type="number" style={styling} value={height} onChange={e => {setHeight(+e.target.value); calculate()}} onKeyUp={() => calculate()} />
-          <br />
-          <label style={labelStyle}>Gross Weight (kg)</label>
-          <input type="number" style={styling} value={grossWeightValue} onChange={e => {setGrossWeightValue(+e.target.value); calculate()}} onKeyUp={() => calculate()} />
-          <br />
+        </div>
+        <div className="column">
+          <div className="textOnInput">
+            <label>Height </label>
+            <input type="number" className="form-control" value={height} onChange={e => { setHeight(+e.target.value); calculate() }} onKeyUp={() => calculate()} />
+
+          </div>
+        </div>
+        <div className="column">
+          <div className="textOnInput">
+            <label>Length</label>
+            <input type="number" className="form-control" value={length} onChange={e => { setLength(+e.target.value); calculate() }} onKeyUp={() => calculate()} />
+
+          </div>
+        </div>
+
+      </div>
+
+      <div className="row">
+        <div className="column">
+          <div className="textOnInput">
+            <label >Width</label>
+            <input type="number" className="form-control" value={width} onChange={e => { setWidth(+e.target.value); calculate() }} onKeyUp={() => calculate()} />
+            <br />
+          </div>
 
 
-          <label style={labelStyle}>Quantity</label>
-          <input type="number" style={styling} value={quantity} onChange={e => {setQuantity(+e.target.value); calculate()}} onKeyUp={() => calculate()} />
-          <br />
+        </div>
+        <div className="column">
+          <div className="textOnInput">
+            <label >Gross Weight</label>
+            <input type="number" className="form-control" value={grossWeightValue} onChange={e => { setGrossWeightValue(+e.target.value); calculate() }} onKeyUp={() => calculate()} />
 
-          <label style={labelStyle}> Weight (kg) </label>
-          <input type="number" style={readInputStyle} value={weightKG} readOnly={true} />
-          <br />
+          </div>
+        </div>
+        <div className="column">
+          <div className="textOnInput">
+            <label>Weight Type</label>
+            <select value={weightType} onChange={e => { handleSelectionWeight(e); calculate() }} >
+              <option value="" disabled>Select value Weight</option>
 
-          <label style={labelStyle}> Weight (lb) </label>
-          <input type="number" style={readInputStyle} value={weightLB} readOnly={true} />
-          <br />
+              <option value="kg">kg</option>
+              <option value="lb">lb</option>
 
+            </select>
 
-          <label style={labelStyle}> Volume (Cubic Meter) </label>
-          <input type="number" style={readInputStyle} value={cubicVolume} readOnly={true} />
-          <br />
+          </div>
+        </div>
+        <div className="column">
+          <div className="textOnInput">
+            <label>Quantity </label>
+            <input type="number" class="form-control" value={quantity} onChange={e => { setQuantity(+e.target.value); calculate() }} onKeyUp={() => calculate()} />
 
-          <label style={labelStyle}> Volume (Cubic Feet) </label>
-          <input type="number" style={readInputStyle} value={cubicFeet} readOnly={true} />
-          <br />
-
-          <label style={labelStyle}> Volume Weight Air (kg) </label>
-          <input type="number" style={readInputStyle} value={volumeWeightAirKG} readOnly={true} />
-          <br>
-          </br>
-          <label style={labelStyle}> Volume Weight Air (lb) </label>
-          <input type="number" style={readInputStyle} value={volumeWeightAirLB} readOnly={true} />
-          <br />
-
-          <label style={labelStyle}> Volume Weight Sea (kg) </label>
-          <input type="number" style={readInputStyle} value={volumeWeightSeaKG} readOnly={true} />
-          <br />
-          <label style={labelStyle}> Volume Weight Sea (lb) </label>
-          <input type="number" style={readInputStyle} value={volumeWeightSeaLB} readOnly={true} />
-          <br />
-          <p style={labelStyle}>Note - Fields with white background color are input fields(Editable) and fields with grey background color are output fields (non-Editable)</p>
+          </div>
         </div>
       </div>
+      <fieldset>
+        <div className="row">
+          <div className="column">
+            <label style={labelStyle}>Total Volume (Cubic Meter)  <input type="number" style={readInputStyle} value={cubicVolume} readOnly={true} />
+            </label>
+            <label style={labelStyle}>Total Weight (kg)  <input type="number" style={readInputStyle} value={weightKG} readOnly={true} />
+            </label>
+            <label style={labelStyle}> Volume Weight Air (kg) <input type="number" style={readInputStyle} value={volumeWeightAirKG} readOnly={true} />
+            </label>
+            <label style={labelStyle}> Volume Weight Sea (kg) <input type="number" style={readInputStyle} value={volumeWeightSeaKG} readOnly={true} />
+            </label>
+          </div>
+          <div className="column">
+            <label style={labelStyle}>Total Volume (Cubic Feet)  <input type="number" style={readInputStyle} value={cubicFeet} readOnly={true} />
+            </label>
+            <label style={labelStyle}>Total Weight (lb) <input type="number" style={readInputStyle} value={weightLB} readOnly={true} />
+            </label>
+            <label style={labelStyle}> Volume Weight Air (lb) <input type="number" style={readInputStyle} value={volumeWeightAirLB} readOnly={true} />
+            </label>
+            <label style={labelStyle}> Volume Weight Sea (lb) <input type="number" style={readInputStyle} value={volumeWeightSeaLB} readOnly={true} />
+            </label>
+          </div>
+        </div>
+      </fieldset>
     </div>
   );
 }
